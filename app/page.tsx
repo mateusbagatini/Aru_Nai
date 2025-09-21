@@ -141,7 +141,7 @@ export default function PhotographyReveal() {
         const newWindowSize = isMobile ? Math.min(window.innerWidth * 0.308, 123) : 210
         setWindowSize(newWindowSize)
         setPosition({
-          x: rect.width / 2,
+          x: isMobile ? rect.width / 2 - 20 : rect.width / 2,
           y: rect.height / 2,
         })
       }
@@ -257,7 +257,7 @@ export default function PhotographyReveal() {
 
       {typeof window !== "undefined" && window.innerWidth < 768 ? (
         <>
-          <div className="absolute top-4 left-4 flex flex-col gap-3 z-40">
+          <div className="absolute top-9 left-4 flex flex-col gap-3 z-40">
             <img src="/images/logo.svg" alt="Logo" className="w-[202px] h-auto brightness-0 invert" />
 
             <div className="mt-10">
