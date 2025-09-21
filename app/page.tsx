@@ -269,7 +269,7 @@ export default function PhotographyReveal() {
             </div>
           </div>
 
-          <div className="absolute left-4 right-4 flex flex-col gap-2 z-50" style={{ bottom: "20px" }}>
+          <div className="fixed left-4 right-4 flex flex-col gap-2 z-50" style={{ bottom: "20px" }}>
             <div className="text-white font-mono text-xs bg-black/60 backdrop-blur-sm px-3 py-2 rounded-lg text-center border border-white/20">
               <div>四角をドラッグしてみてください！</div>
               <div className="text-xs opacity-80 mt-1">Try to drag the square shape!</div>
