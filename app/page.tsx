@@ -138,7 +138,7 @@ export default function PhotographyReveal() {
         const isMobile =
           window.innerWidth < 768 ||
           /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-        const newWindowSize = isMobile ? Math.min(window.innerWidth * 0.35, 140) : 210
+        const newWindowSize = isMobile ? Math.min(window.innerWidth * 0.308, 123) : 210
         setWindowSize(newWindowSize)
         setPosition({
           x: rect.width / 2,
@@ -176,7 +176,7 @@ export default function PhotographyReveal() {
           <video src={uploadedVideo} autoPlay loop muted playsInline className="w-full h-full object-cover" />
         ) : (
           <Image
-            src={uploadedImage || "/images/todaiback2.jpg"}
+            src={uploadedImage || "/images/todaiback3.jpg"}
             alt="Background image"
             fill
             className="object-cover"
@@ -200,7 +200,7 @@ export default function PhotographyReveal() {
           />
         ) : (
           <Image
-            src={uploadedImage || "/images/todaiback2.jpg"}
+            src={uploadedImage || "/images/todaiback3.jpg"}
             alt="Blurred background"
             fill
             className="object-cover blur-md"
@@ -255,43 +255,69 @@ export default function PhotographyReveal() {
         </div>
       </div>
 
-      <div className="absolute top-4 md:bottom-8 right-4 md:right-8 flex flex-col gap-2 md:gap-3 items-end z-40">
-        <div className="text-white font-mono text-xs md:text-sm bg-black/60 backdrop-blur-sm px-2 md:px-4 py-2 md:py-2 rounded-lg max-w-[200px] md:max-w-none text-right border border-white/20">
-          <div>四角をドラッグしてみてください！</div>
-          <div className="text-xs opacity-80 mt-1">Try to drag the square shape!</div>
-        </div>
+      {typeof window !== "undefined" && window.innerWidth < 768 ? (
+        <>
+          <div className="absolute top-4 left-4 flex flex-col gap-3 z-40">
+            <img src="/images/logo.svg" alt="Logo" className="w-[202px] h-auto brightness-0 invert" />
 
-        <button
-          onClick={triggerFileInput}
-          className="bg-black/60 hover:bg-black/80 backdrop-blur-sm text-white font-mono text-xs md:text-sm px-2 md:px-4 py-2 md:py-2 rounded-lg border border-white/40 transition-colors min-h-[40px] md:min-h-[44px] touch-manipulation shadow-lg pointer-events-auto relative z-50"
-        >
-          <div>{uploadedImage || uploadedVideo ? "メディアを変更" : "画像・動画をアップロード"}</div>
-          <div className="text-xs opacity-80 mt-1">
-            {uploadedImage || uploadedVideo ? "Change Media" : "Upload Image/Video"}
+            <div className="mt-10">
+              <img
+                src="/images/mobile-bottom.svg"
+                alt="Mobile bottom content"
+                className="w-full max-w-[280px] h-auto brightness-0 invert"
+              />
+            </div>
           </div>
-        </button>
-      </div>
 
-      <div className="absolute top-4 md:top-8 left-4 md:left-8 z-10">
-        <img src="/images/logo.svg" alt="Logo" className="w-[202px] md:w-[202px] h-auto brightness-0 invert" />
-      </div>
+          <div className="absolute left-4 right-4 flex flex-col gap-2 z-50" style={{ bottom: "20px" }}>
+            <div className="text-white font-mono text-xs bg-black/60 backdrop-blur-sm px-3 py-2 rounded-lg text-center border border-white/20">
+              <div>四角をドラッグしてみてください！</div>
+              <div className="text-xs opacity-80 mt-1">Try to drag the square shape!</div>
+            </div>
+
+            <button
+              onClick={triggerFileInput}
+              className="bg-black/60 hover:bg-black/80 backdrop-blur-sm text-white font-mono text-xs px-3 py-2 rounded-lg border border-white/40 transition-colors min-h-[40px] touch-manipulation shadow-lg pointer-events-auto relative z-50 text-center"
+            >
+              <div>{uploadedImage || uploadedVideo ? "メディアを変更" : "画像・動画をアップロード"}</div>
+              <div className="text-xs opacity-80 mt-1">
+                {uploadedImage || uploadedVideo ? "Change Media" : "Upload Image/Video"}
+              </div>
+            </button>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="absolute bottom-8 right-8 flex flex-col gap-3 items-end z-40">
+            <div className="text-white font-mono text-sm bg-black/60 backdrop-blur-sm px-4 py-2 rounded-lg text-right border border-white/20">
+              <div>四角をドラッグしてみてください！</div>
+              <div className="text-xs opacity-80 mt-1">Try to drag the square shape!</div>
+            </div>
+
+            <button
+              onClick={triggerFileInput}
+              className="bg-black/60 hover:bg-black/80 backdrop-blur-sm text-white font-mono text-sm px-4 py-2 rounded-lg border border-white/40 transition-colors min-h-[44px] touch-manipulation shadow-lg pointer-events-auto relative z-50"
+            >
+              <div>{uploadedImage || uploadedVideo ? "メディアを変更" : "画像・動画をアップロード"}</div>
+              <div className="text-xs opacity-80 mt-1">
+                {uploadedImage || uploadedVideo ? "Change Media" : "Upload Image/Video"}
+              </div>
+            </button>
+          </div>
+
+          <div className="absolute top-8 left-8 z-10">
+            <img src="/images/logo.svg" alt="Logo" className="w-[202px] h-auto brightness-0 invert" />
+          </div>
+        </>
+      )}
 
       <div
-        className="absolute bottom-4 md:bottom-8 left-4 md:left-8 z-50"
+        className="absolute left-4 md:left-8 z-50"
         style={{
-          bottom:
-            typeof window !== "undefined" && window.innerWidth < 768
-              ? "16px" // Fixed bottom margin for mobile to ensure full display
-              : undefined,
+          bottom: typeof window !== "undefined" && window.innerWidth < 768 ? "10px" : "32px",
         }}
       >
-        {typeof window !== "undefined" && window.innerWidth < 768 ? (
-          <img
-            src="/images/mobile-bottom.svg"
-            alt="Mobile bottom content"
-            className="w-full max-w-[280px] h-auto brightness-0 invert"
-          />
-        ) : (
+        {typeof window !== "undefined" && window.innerWidth < 768 ? null : (
           <a
             href="https://www.instagram.com/iiiexhibition/"
             target="_blank"
